@@ -15,6 +15,7 @@ class Player(Entity):
 
     def move(self, ):
         pressed_key = pygame.key.get_pressed()
+
         if pressed_key[PLAYER_KEY_UP[self.name]] and self.rect.top > 0:
             self.rect.centery -= ENTITY_SPEED[self.name]
         if pressed_key[PLAYER_KEY_DOWN[self.name]] and self.rect.bottom < WIN_HEIGHT:
@@ -27,7 +28,7 @@ class Player(Entity):
 
     def shoot(self):
         self.shot_delay -= 1
-        if self.shot_delay == 0:
+        if self.shot_delay <= 0:
             self.shot_delay = ENTITY_SHOT_DELAY[self.name]
             pressed_key = pygame.key.get_pressed()
             if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
